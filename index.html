@@ -73,6 +73,11 @@
             </li>
           </ul>
         </nav>
+
+        <button class="cart-toggle" id="cartToggle" aria-label="Open cart">
+          🛒
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
       </div>
     </header>
 
@@ -989,11 +994,169 @@
             </div>
           </div>
 
-          <a href="#" class="modal-order" id="modalOrder">
-            Order This Dish
-            <span>↓</span>
-          </a>
+          <div class="modal-actions">
+            <div class="qty-stepper" id="qtyStepper">
+              <button
+                type="button"
+                class="qty-btn"
+                id="qtyMinus"
+                aria-label="Decrease quantity">
+                −
+              </button>
+              <span class="qty-value" id="qtyValue">1</span>
+              <button
+                type="button"
+                class="qty-btn"
+                id="qtyPlus"
+                aria-label="Increase quantity">
+                +
+              </button>
+            </div>
+
+            <button type="button" class="modal-order" id="addToCart">
+              Add to Cart
+              <span>🛒</span>
+            </button>
+          </div>
         </div>
+      </div>
+    </div>
+
+    <!-- =========================
+       CART DRAWER
+  ========================== -->
+
+    <div class="cart-drawer" id="cartDrawer" aria-hidden="true">
+      <div class="cart-backdrop" id="cartBackdrop"></div>
+
+      <div
+        class="cart-panel"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="cartTitle">
+        <div class="cart-header">
+          <h3 id="cartTitle">Your Cart</h3>
+          <button class="cart-close" id="cartClose" aria-label="Close cart">
+            ×
+          </button>
+        </div>
+
+        <div class="cart-items" id="cartItems">
+          <div class="cart-empty" id="cartEmpty">
+            <span>🛒</span>
+            <p>Your cart is empty.</p>
+            <small>Tap any dish to add it.</small>
+          </div>
+        </div>
+
+        <div class="cart-customer">
+          <span class="cart-customer-label">Delivery Details</span>
+
+          <input
+            type="text"
+            id="customerName"
+            class="cart-input"
+            placeholder="Full Name"
+            autocomplete="name" />
+
+          <textarea
+            id="customerAddress"
+            class="cart-input cart-textarea"
+            placeholder="Complete Address"
+            autocomplete="street-address"
+            rows="2"></textarea>
+
+          <small class="cart-customer-hint" id="cartCustomerHint">
+            Please fill in your name and address before requesting a receipt.
+          </small>
+        </div>
+
+        <div class="cart-footer">
+          <div class="cart-total-row">
+            <span>Total</span>
+            <strong id="cartTotal">₱0</strong>
+          </div>
+
+          <button
+            type="button"
+            class="btn btn-primary cart-receipt-btn"
+            id="receiveReceiptBtn"
+            disabled>
+            Receive Receipt
+            <span>🧾</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================
+       RECEIPT MODAL
+  ========================== -->
+
+    <div class="receipt-modal" id="receiptModal" aria-hidden="true">
+      <div class="receipt-backdrop" id="receiptBackdrop"></div>
+
+      <div
+        class="receipt-paper"
+        id="receiptPaper"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="receiptModalTitle">
+        <button
+          class="receipt-close"
+          id="receiptClose"
+          aria-label="Close receipt">
+          ×
+        </button>
+
+        <div class="receipt-stamp" id="receiptStamp">✓</div>
+
+        <div class="receipt-head">
+          <div class="receipt-logo">F</div>
+          <strong id="receiptModalTitle">FLUXION GRILLED HOUSE</strong>
+          <span>Balanga City, Bataan</span>
+          <span id="receiptDateTime"></span>
+        </div>
+
+        <div class="receipt-divider"></div>
+
+        <div class="receipt-customer" id="receiptCustomer"></div>
+
+        <div class="receipt-divider"></div>
+
+        <div class="receipt-lines" id="receiptLines"></div>
+
+        <div class="receipt-divider"></div>
+
+        <div class="receipt-total-line">
+          <span>TOTAL</span>
+          <strong id="receiptTotal">₱0</strong>
+        </div>
+
+        <div class="receipt-divider dashed"></div>
+
+        <p class="receipt-note">
+          Please screenshot or copy this receipt and send it to our Facebook
+          page to complete your order.
+        </p>
+
+        <button
+          type="button"
+          class="btn btn-secondary receipt-copy-btn"
+          id="receiptCopyBtn">
+          Copy Order Details
+          <span>⧉</span>
+        </button>
+
+        <a
+          id="receiptFacebookLink"
+          href="https://www.facebook.com/profile.php?id=61565052770927"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-primary receipt-fb-btn">
+          Send to Facebook Page
+          <span>↗</span>
+        </a>
       </div>
     </div>
 
